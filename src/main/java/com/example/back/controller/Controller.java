@@ -1,9 +1,6 @@
 package com.example.back.controller;
 
-import com.example.back.entity.Band;
-import com.example.back.entity.Client;
-import com.example.back.entity.Concert;
-import com.example.back.entity.Order;
+import com.example.back.dto.*;
 import com.example.back.service.BandService;
 import com.example.back.service.ClientService;
 import com.example.back.service.ConcertService;
@@ -30,51 +27,51 @@ public class Controller {
     ConcertService concertService;
 
     @GetMapping("/clients")
-    public List<Client> getAllClients(){
+    public List<ClientResponse> getAllClients(){
         return clientService.getAllClients();
     }
     @GetMapping("/client/{id}")
-    public Client getClient(@PathVariable long id) throws Exception{
+    public ClientResponse getClient(@PathVariable long id) throws Exception{
         return clientService.getClient(id);
     }
     @PostMapping("/client")
-    public void postClient(@RequestBody Client client){
-        clientService.postClient(client);
+    public void postClient(@RequestBody ClientResponse clientResponse){
+        clientService.postClient(clientResponse);
     }
     @GetMapping("/bands")
-    public List<Band> getAllBands(){
+    public List<BandResponse> getAllBands(){
         return bandService.getAllBands();
     }
     @GetMapping("/band/{id}")
-    public Band getBand(@PathVariable long id) throws Exception{
+    public BandResponse getBand(@PathVariable long id) throws Exception{
         return bandService.getBand(id);
     }
     @PostMapping("/band")
-    public void postBand(@RequestBody Band band){
-        bandService.postBand(band);
+    public void postBand(@RequestBody BandResponse bandResponse){
+        bandService.postBand(bandResponse);
     }
     @GetMapping("/concerts")
-    public List<Concert> getAllConcerts(){
+    public List<ConcertResponse> getAllConcerts(){
         return concertService.getAllConcerts();
     }
     @GetMapping("/concert/{id}")
-    public Concert getConcert(@PathVariable long id) throws Exception{
+    public ConcertResponse getConcert(@PathVariable long id) throws Exception{
         return concertService.getConcert(id);
     }
     @PostMapping("/concert")
-    public void postConcert(@RequestBody Concert concert){
-        concertService.postConcert(concert);
+    public void postConcert(@RequestBody ConcertResponse concertResponse){
+        concertService.postConcert(concertResponse);
     }
     @GetMapping("/orders")
-    public List<Order> getAllOrders(){
+    public List<OrderResponse> getAllOrders(){
         return orderService.getAllOrders();
     }
     @GetMapping("/order/{id}")
-    public Order getOrder(@PathVariable long id) throws Exception{
+    public OrderResponse getOrder(@PathVariable long id) throws Exception{
         return orderService.getOrder(id);
     }
     @PostMapping("/order")
-    public void postOrder(@RequestBody Order order){
-        orderService.postOrder(order);
+    public void postOrder(@RequestBody OrderResponse orderResponse){
+        orderService.postOrder(orderResponse);
     }
 }

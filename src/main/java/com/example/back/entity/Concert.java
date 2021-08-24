@@ -11,17 +11,26 @@ public class Concert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long concert_id;
 
-    @Column(name="time", nullable=false)
+    @Column(name="time")
     private Date time;
 
-    @Column(name="number_of_customers", nullable = false)
+    @Column(name="number_of_customers")
     private int number_of_customers;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="band_id")
     private Band band;
 
-    @OneToMany
+    @OneToMany(mappedBy = "concert", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     private Set<Order> orders;
+
+    public Concert() {}
+
+    public Concert(Date time, int number_of_customers, Band band) {
+        this.time = time;
+        this.number_of_customers = number_of_customers;
+        this.band = band;
+    }
 
     public Long getConcert_id() {
         return concert_id;

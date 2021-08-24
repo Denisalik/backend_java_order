@@ -10,7 +10,7 @@ public class Band {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long band_id;
 
-    @Column(name="name_of_band", nullable=false)
+    @Column(name="name_of_band")
     private String name_of_band;
 
     @Column(name="number_of_people")
@@ -19,9 +19,15 @@ public class Band {
     @Column(name="genre_of_music")
     private String genre_of_music;
 
-    @OneToMany
+    @OneToMany(mappedBy = "band", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Concert> concerts;
 
+    public Band(){}
+    public Band(String name_of_band, int number_of_people, String genre_of_music){
+        this.name_of_band = name_of_band;
+        this.number_of_people = number_of_people;
+        this.genre_of_music = genre_of_music;
+    }
     public Long getBand_id() {
         return band_id;
     }

@@ -10,17 +10,24 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long client_id;
 
-    @Column(name="name", nullable=false)
+    @Column(name="name")
     private String name;
 
-    @Column(name="phone", length = 12,  unique = true)
+    @Column(name="phone", length = 12)
     private String phone;
 
     @Column(name="address")
     private String address;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     private Set<Order> orders;
+
+    public Client(){}
+    public Client(String name, String phone, String address){
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+    }
 
     public Long getClient_id() {
         return client_id;

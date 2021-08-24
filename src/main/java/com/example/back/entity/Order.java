@@ -9,17 +9,28 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long order_id;
 
-    @Column(name="place_of_purchase", nullable=false)
+    @Column(name="place_of_purchase")
     private String place_of_purchase;
 
-    @Column(name="vip_status", nullable = false)
+    @Column(name="vip_status")
     private boolean vip_status;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="client_id")
     private Client client;
 
-    @ManyToOne
-    private Concert concerts;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="concert_id")
+    private Concert concert;
+
+    public Order() {}
+
+    public Order(String place_of_purchase, boolean vip_status, Client client, Concert concert) {
+        this.place_of_purchase = place_of_purchase;
+        this.vip_status = vip_status;
+        this.concert = concert;
+        this.client = client;
+    }
 
     public Long getOrder_id() {
         return order_id;
@@ -54,10 +65,10 @@ public class Order {
     }
 
     public Concert getConcerts() {
-        return concerts;
+        return concert;
     }
 
-    public void setConcerts(Concert concerts) {
-        this.concerts = concerts;
+    public void setConcerts(Concert concert) {
+        this.concert = concert;
     }
 }
