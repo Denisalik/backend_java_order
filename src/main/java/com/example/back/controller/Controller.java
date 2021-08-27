@@ -71,7 +71,7 @@ public class Controller {
         return orderService.getOrder(id);
     }
     @PostMapping("/order")
-    public void postOrder(@RequestBody OrderResponse orderResponse){
-        orderService.postOrder(orderResponse);
+    public void postOrder(@RequestBody OrderResponse orderResponse, @RequestParam long concert_id, @RequestParam long client_id) throws Exception {
+        orderService.postOrder(orderResponse, concert_id, client_id);
     }
 }

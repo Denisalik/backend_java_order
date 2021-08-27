@@ -1,6 +1,7 @@
 package com.example.back.entity;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table(name="Orders")
@@ -68,7 +69,7 @@ public class Order {
         return concert;
     }
 
-    public void setConcerts(Concert concert) {
+    public void setConcert(Concert concert) {
         this.concert = concert;
     }
 }
