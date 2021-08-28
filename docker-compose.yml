@@ -26,3 +26,10 @@ services:
       - "8080:8080"
     depends_on:
       - db
+  front:
+    image: 'front:latest'
+    container_name: front
+    ports:
+      - "3000:3000"
+    depends_on:
+      - back
